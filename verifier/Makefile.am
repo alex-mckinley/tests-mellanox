@@ -21,20 +21,16 @@ EXTRA_DIST=autogen.sh
 
 bin_PROGRAMS = oshmem_test
 
-# This lib is used for basic:tc3
-lib_LIBRARIES = liboshmem_basic_tc3.a
-liboshmem_basic_tc3_a_SOURCES = basic/osh_basic_tc3_lib.c
-
 if ENABLE_ERROR
 ERROR_FLAG = -Werror
 endif
 
-oshmem_test_CFLAGS =  $(CFLAGS) $(ERROR_FLAG) -Wall -D__LINUX__ \
+oshmem_test_CFLAGS =  $(CFLAGS) $(ERROR_FLAG) -Wall \
 					  -I. \
 					  -I$(top_srcdir) \
 					  -I$(top_srcdir)/cmn
 
-oshmem_test_LDFLAGS = $(LDFLAGS) -L. -loshmem_basic_tc3 -lm
+oshmem_test_LDFLAGS = $(LDFLAGS) -L. -lm
 
 noinst_HEADERS = \
 	osh_tests.h \
@@ -86,6 +82,24 @@ oshmem_test_SOURCES = \
 	atomic/osh_atomic_tc20.c \
 	atomic/osh_atomic_tc21.c \
 	atomic/osh_atomic_tc22.c \
+	atomic/osh_atomic_tc23.c \
+	atomic/osh_atomic_tc24.c \
+	atomic/osh_atomic_tc25.c \
+	atomic/osh_atomic_tc26.c \
+	atomic/osh_atomic_tc27.c \
+	atomic/osh_atomic_tc28.c \
+	atomic/osh_atomic_tc29.c \
+	atomic/osh_atomic_tc30.c \
+	atomic/osh_atomic_tc31.c \
+	atomic/osh_atomic_tc32.c \
+	atomic/osh_atomic_tc33.c \
+	atomic/osh_atomic_tc34.c \
+	atomic/osh_atomic_tc35.c \
+	atomic/osh_atomic_tc36.c \
+	atomic/osh_atomic_tc37.c \
+	atomic/osh_atomic_tc38.c \
+	atomic/osh_atomic_tc39.c \
+	atomic/osh_atomic_tc40.c \
 	basic/osh_basic.c \
 	basic/osh_basic_tc1.c \
 	basic/osh_basic_tc2.c \
@@ -96,6 +110,7 @@ oshmem_test_SOURCES = \
 	basic/osh_basic_tc7.c \
 	basic/osh_basic_tc8.c \
 	basic/osh_basic_tc9.c \
+	basic/osh_basic_tc3_lib.c \
 	data/osh_data.c \
 	data/osh_data_tc1.c \
 	data/osh_data_tc2.c \
@@ -206,6 +221,7 @@ oshmem_test_SOURCES = \
 	sync/osh_sync_tc5.c \
 	sync/osh_sync_tc6.c \
 	sync/osh_sync_tc7.c \
+	sync/osh_sync_tc8.c \
 	strided/osh_strided.c \
 	strided/osh_strided_tc1.c \
 	strided/osh_strided_tc2.c \

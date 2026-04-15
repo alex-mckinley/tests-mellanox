@@ -12,6 +12,7 @@ AM_PROG_CC_C_O
 AC_PROG_LIBTOOL
 AM_MAINTAINER_MODE
 AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_HEADERS([cmn/config.h])
 
 if [ $CC --version | grep icc ]; then
     CFLAGS="$CFLAGS -wd188,981,1419,810"
@@ -63,5 +64,16 @@ AC_ARG_ENABLE([error],
 AS_IF([test "$enable_error" != "no"], [AC_DEFINE([ENABLE_ERROR], [1], [Pass -Werror])], [])
 AM_CONDITIONAL([ENABLE_ERROR], [test "$enable_error" != "no"])
 
+AC_CHECK_DECLS([shmem_uint_atomic_fetch_and, shmem_ulong_atomic_fetch_and, shmem_ulonglong_atomic_fetch_and,
+                shmem_uint_atomic_fetch_or, shmem_ulong_atomic_fetch_or, shmem_ulonglong_atomic_fetch_or,
+                shmem_uint_atomic_fetch_xor, shmem_ulong_atomic_fetch_xor, shmem_ulonglong_atomic_fetch_xor],
+    [], [], [#include "shmem.h"])
+
+AC_CHECK_DECLS([shmem_uint_atomic_and, shmem_ulong_atomic_and, shmem_ulonglong_atomic_and,
+                shmem_uint_atomic_or, shmem_ulong_atomic_or, shmem_ulonglong_atomic_or,
+                shmem_uint_atomic_xor, shmem_ulong_atomic_xor, shmem_ulonglong_atomic_xor],
+    [], [], [#include "shmem.h"])
+
+AC_CHECK_HEADERS([unistd.h])
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
